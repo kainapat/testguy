@@ -23,4 +23,5 @@ testguy/
 - **pointtohtml.txt**: ไฟล์คำแนะนำสำหรับการตั้งค่า Nginx server รวมถึง:
   - การกำหนด server blocks
   - การตั้งค่า locations
-  - การจัดการ error pages
+  - การจัดการ error pages 
+  

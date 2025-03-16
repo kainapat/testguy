@@ -1,0 +1,61 @@
+sudo nano /etc/nginx/sites-available/default
+
+
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /var/www/html;
+        index index.php index.html index.htm;
+
+        server_name _ 10.4.15.159;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+        location /itadmin {
+                alias /var/www/html/itadmin;
+                index index.html index.htm index.php;
+        }
+
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+        root /usr/share/nginx/html;
+
+}
+    location /acc-manager {
+        alias /var/www/html/acc-manager;
+        index index.html index.htm index.php;
+    }
+
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+
+    location = /50x.html {
+        root /usr/share/nginx/html; scripts to FastCGI server
+
+}
+
+}
+
+
+sudo mkdir -p /var/www/html/itadmin
+sudo nano /var/www/html/itadmin/index.html
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IT Admin Page</title>
+</head>
+<body>
+    <h1>Welcome to the IT Admin Page</h1>
+    <p>This is the IT Admin area.</p>
+</body>
+</html>
+
+
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled
+sudo nginx -t
+sudo systemctl reload nginx
